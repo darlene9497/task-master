@@ -1,0 +1,38 @@
+<template id="auth-form-template">
+    <div class="auth-container">
+        
+        <div class="auth-container__title">
+            <div class="auth-container__title--icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-check-big-icon lucide-square-check-big"><path d="M21 10.656V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12.344"/><path d="m9 11 3 3L22 4"/></svg>
+                <div class="yellow-dot"></div>
+            </div>
+            <h1 class="authTitle" data-title></h1>
+            <p class="authInfo" data-info></p>
+        </div>
+
+        <div class="auth-container__switch">
+            <button id="loginBtn" class="active">Login</button>
+            <button id="signupBtn">Sign Up</button>
+        </div>
+
+        <form id="authForm">
+            <div id="form-fields">
+                <!-- JS will insert login or signup fields here -->
+            </div>
+
+            <div class="auth-container__buttons">
+                <button class="help-btn">
+                    <img src="/assets/icons/question.png" alt="help icon">
+                    Help ?
+                </button>
+                <button type="submit" id="submit-btn" data-submit-btn></button>
+            </div>
+        </form>
+
+        <div class="auth-container__terms">
+            <span>
+                By continuing, you agree to our <a href="">Terms of Service</a> & <a href="">Privacy Policy</a>
+            </span>
+        </div>
+    </div>
+</template>
