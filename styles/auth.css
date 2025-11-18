@@ -1,13 +1,4 @@
-@import url('/styles/global.css');
-
-body {
-    margin: 0;
-    padding: 0;
-    background: #ffffff;
-    font-family: ui-sans-serif, system-ui, sans-serif;
-}
-
-.auth-page {
+[data-modifier="auth-page"] {
     position: relative;
     width: 100%;
     max-width: 100rem;

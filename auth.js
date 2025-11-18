@@ -1,28 +1,3 @@
-// load visuals background for authentication page template
-fetch('/templates/auth/auth-bg.html')
-    .then(res => res.text())
-    .then(html => {
-        const template = document.createElement("div");
-        template.innerHTML = html;
-
-        const visuals = template.querySelector("#auth-bg-template").content.cloneNode(true);
-        document.querySelector(".auth-page").appendChild(visuals);
-    });
-
-// load auth form template
-fetch('/templates/auth/auth-form.html')
-    .then(res => res.text())
-    .then(html => {
-        const template = document.createElement("div");
-        template.innerHTML = html;
-
-        const authForm = template.querySelector("#auth-form-template").content.cloneNode(true);
-        document.querySelector(".auth-page").appendChild(authForm);
-
-        setAuthLogic()
-        formValidation()
-    })
-
 // auth switch logic
 function setAuthLogic() {
     const title = document.querySelector("[data-title]")
@@ -88,7 +63,7 @@ function setAuthLogic() {
     // default screen
     showLogin()
 
-    // button events
+    // button events to switch forms
     loginBtn.addEventListener("click", showLogin)
     signupBtn.addEventListener("click", showSignup)
 }

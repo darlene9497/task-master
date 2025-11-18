@@ -45,3 +45,7 @@ table {
 button {
 	cursor: pointer;
 }
+
+body {
+	font-family: ui-sans-serif, system-ui, sans-serif;
+}
