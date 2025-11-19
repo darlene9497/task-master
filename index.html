@@ -8,11 +8,10 @@
     <link rel="stylesheet" href="/styles/auth.css">
 </head>
 <body>
-    <!-- auth page container -->
-    <div data-modifier="auth-page"></div>
-
-    <script src="https://cdn.jsdelivr.net/npm/validator@13.11.0/validator.min.js"></script>
-    <script src="/main.js"></script>
-    <script src="/auth.js"></script>
+    <script>
+        if (sessionStorage.getItem("userLoggedIn") !== "true") {
+            window.location.href = "/auth.html";
+        }
+    </script>
 </body>
 </html>

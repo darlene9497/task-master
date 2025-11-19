@@ -13,17 +13,10 @@ function loadComponent(modifier, url, callback) {
             if(template) {
                 container.appendChild(template.content.cloneNode(true));
             } else {
-                container.innerHTML = html;
+                container.appendChild(tempDiv.cloneNode(true))
             }
 
             if(callback) callback(container);
         })
         .catch(err => console.error(`Failed to load ${modifier}:`, err));
 }
-
-// load auth visuals and form directly into auth-page container
-loadComponent("auth-page", "/templates/auth/auth-bg.html");
-loadComponent("auth-page", "/templates/auth/auth-form.html", () => {
-    setAuthLogic();    // from auth.js
-    formValidation();  // from auth.js
-});

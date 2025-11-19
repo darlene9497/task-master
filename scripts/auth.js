@@ -119,6 +119,14 @@ function formValidation() {
         .then(data => {
             alert("Auth successful")
             console.log(data)
+
+            // set login session
+            sessionStorage.setItem("userLoggedIn", "true");
+            sessionStorage.setItem("userName", fullName || emailInput.value);
+            sessionStorage.setItem("userEmail", emailInput.value);
+
+            // redirect to dashboard
+            window.location.href = "/index.html";
         })
         .catch(err => {
             alert("Auth failed. Try again")
