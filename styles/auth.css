@@ -127,12 +127,12 @@
 .authTitle {
     font-size: 1.875rem;
     font-weight: bold;
-    color: #101828;
+    color: var(--dark-grey-text-color);
 }
 
 .authInfo {
-    color: #4a5565;
-    font-size: 16px;
+    color: var(--light-grey-text-color);
+    font-size: 1rem;
     font-weight: 400;
 }
 
