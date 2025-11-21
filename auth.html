@@ -9,10 +9,7 @@
 </head>
 <body>
     <script>
-        // if user is already logged in, redirect to dashboard (index.html)
-        if (sessionStorage.getItem("userLoggedIn") === "true") {
-            window.location.href = "/index.html";
-        }
+        redirectIfLoggedIn();
     </script>
     <!-- auth page container -->
     <div data-modifier="auth-page"></div>

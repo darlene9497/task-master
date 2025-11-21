@@ -1,0 +1,139 @@
+#root__aside {
+    width: 16.4rem;
+}
+
+.sidebar-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border-color);
+}
+
+.sidebar-container__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.9rem;
+}
+
+.sidebar-container hr {
+    width: 100%;
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 0;
+}
+
+.sidebar-container__header--icon  {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+
+    h1 {
+        font-weight: bold;
+    }
+
+    svg {
+        color: white;
+        background: linear-gradient(to bottom, #155dfc, #4f39f6);
+        padding: 10px;
+        border-radius: 8px;
+        height: 20px;
+        width: 20px;
+    }
+}
+
+.sidebar-container__header--btn {
+    display: flex;
+    align-items: center;
+
+    button {
+        border: none;
+        padding: 0;
+        background-color: transparent;
+    }
+
+    svg {
+        height: 1rem;
+    }
+}
+
+.sidebar-container__profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.9rem;
+}
+
+.sidebar-container__profile--icon {
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(to bottom, #155dfc, #4f39f6);
+    height: 10px;
+    width: 10px;
+    padding: 15px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-container__profile--user .user-name {
+    color: var(--dark-grey-text-color);
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.875rem;
+    margin-bottom: 5px;
+}
+
+.sidebar-container__profile--user .user-email {
+    font-size: 0.75rem;
+    color: var(--light-grey-text-color);
+}
+
+.nav-buttons {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 0.9rem;
+    gap: 10px;
+}
+
+.nav-btn { 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; border: none; 
+    background-color: transparent; 
+    color: #364153; 
+    padding: 8px 12px; 
+    border-radius: 10px; 
+    
+    svg { 
+        height: 1rem; 
+    } 
+    
+    span { 
+        font-size: 0.875rem; 
+    } 
+}
+
+.nav-buttons button:focus,
+.nav-buttons button:hover {
+    color: #4f39f6;
+    background-color: #eef2ff;
+}
+
+.sidebar-container__logout {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    padding: 0.9rem;
+}
+
+.nav-btn--logout {
+    color: #e7000b;
+    width: 100%;
+}
+
+.sidebar-container__logout button:focus,
+.sidebar-container__logout button:hover {
+    background-color: #fef2f2;
+}

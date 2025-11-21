@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Master</title>
+    <title>Dashboard | Task Master</title>
     <link rel="stylesheet" href="/styles/global.css">
-    <link rel="stylesheet" href="/styles/auth.css">
 </head>
 <body>
     <script>
-        if (sessionStorage.getItem("userLoggedIn") !== "true") {
-            window.location.href = "/auth.html";
-        }
+        redirectIfNotLoggedIn();
     </script>
+
+    <aside id="root__aside" data-import="/templates/dashboard/sidebar.html"></aside>
+
+    <script src="/scripts/main.js"></script>
 </body>
 </html>
