@@ -1,11 +1,11 @@
-
+// if user is not logged in, redirect to auth
 function redirectIfNotLoggedIn() {
     if (sessionStorage.getItem("userLoggedIn") !== "true") {
         window.location.href = "/auth.html";
     }
 }
 
-// if user is already logged in, redirect to dashboard (index.html)
+// if user is already logged in, redirect to dashboard
 function redirectIfLoggedIn() {
     if (sessionStorage.getItem("userLoggedIn") === "true") {
         window.location.href = "/index.html";
@@ -59,7 +59,7 @@ function loadScript(src) {
         }
         
         const script = document.createElement('script');
-        script.src;
+        script.src = src;
         script.onload = resolve;
         script.onerror = reject;
         document.body.appendChild(script);

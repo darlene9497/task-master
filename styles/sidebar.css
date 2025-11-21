@@ -48,13 +48,22 @@
 
     button {
         border: none;
-        padding: 0;
         background-color: transparent;
+        padding: 7px 4px;
+        border-radius: 5px;
     }
 
     svg {
         height: 1rem;
     }
+}
+
+.sidebar-container__header--btn button:hover {
+    background-color: #06b6d4;
+}
+
+.sidebar-container__header--btn button:hover svg {
+    color: white;
 }
 
 .sidebar-container__profile {
@@ -136,4 +145,19 @@
 .sidebar-container__logout button:focus,
 .sidebar-container__logout button:hover {
     background-color: #fef2f2;
+}
+
+/* collapsed sidebar */
+#root__aside.collapsed {
+    width: fit-content;
+}
+
+#root__aside.collapsed .sidebar-container__header--icon,
+#root__aside.collapsed .sidebar-container__profile--user,
+#root__aside.collapsed .nav-btn span {
+    display: none;
+}
+
+#root__aside.collapsed .sidebar-container__header--btn svg {
+    rotate: 180deg;
 }
