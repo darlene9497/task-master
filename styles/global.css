@@ -51,8 +51,28 @@ body {
 }
 
 :root {
-	--border-color: #ddd;
+	--border-color: #e5e7eb;
     --primary-color: #0028ff;
 	--dark-grey-text-color: #101828;
-	--light-grey-text-color: #4a5565;
+	--grey-text-color: #4a5565;
+	--light-grey-text-color: #6a7282;
+	--dark-cyan: #0092b8;
+	--dark-green: #00a63e;
+	--dark-blue: #4f39f6;
+	--text-xlg: 1.875rem;
+	--text-lg: 1.5rem;
+	--text-m: 1rem;
+	--text-s: 0.875rem;
+	--text-xs: 0.75rem;
+}
+
+.dashboard-layout {
+	display: flex;
+	height: 100vh;
+}
+
+main {
+	flex: 1;
+	padding: 2.15rem;
+	background-color: #f8f9fa;
 }
