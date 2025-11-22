@@ -9,8 +9,9 @@
 
 .dashboard-container__heading p {
     color: var(--grey-text-color);
-    font-size: 16px;
+    font-size: var(--text-s);
     margin-top: 10px;
+    line-height: 1.6;
 }
 
 .dashboard-container__cards {
@@ -66,8 +67,167 @@
     color: var(--light-grey-text-color);
 }
 
+/* activity cards */
+.dashboard-container__activity-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 40px;
+    gap: 1.5rem;
+}
+
+.dashboard-container__activity-cards--tasks,
+.dashboard-container__activity-cards--actions {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    gap: 30px;
+}
+
+.activity-card__heading {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 24px 24px 0;
+
+    svg {
+        color: var(--primary-color);
+    }
+
+    h4 {
+        font-size: var(--text-m);
+        color: var(--light-text-color);
+    }
+}
+
+/* .activity-card__tasks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 32px 0;
+    gap: 0.75rem;
+
+    svg {
+        color: #d1d5dc;
+    }
+
+    p {
+        font-size: var(--text-s);
+        color: var(--light-grey-text-color);
+    }
+} */
+
+.activity-card__tasks,
+.activity-card__actions {
+    padding: 0 24px 24px;
+}
+
+.activity-card__tasks--box,
+.activity-card__actions--box {
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.activity-box__activity,
+.activity-box__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    p {
+        font-size: var(--text-s);
+        color: var(--dark-grey-text-color);
+        margin-bottom: 2px;
+    }
+
+    span {
+        font-size: var(--text-xs);
+        color: var(--light-grey-text-color);
+    }
+}
+
+.activity-box__activity input {
+    display: none;
+}
+
+.activity-box__activity label {
+    cursor: pointer;
+    display: inline-flex;
+    width: 1.125rem;
+    height: 1.125rem;
+}
+
+.checkmark path {
+    transition: opacity 0.2s ease-in-out;
+    opacity: 0;
+}
+
+.activity-box__activity input:checked + label .checkmark path {
+    opacity: 1;
+}
+
+.activity-box__activity input:checked + label .checkmark circle {
+    fill: #a9aef6;
+    stroke: #a9aef6;
+}
+
+.activity-box__priority {
+    display: flex;
+    align-items: center;
+
+    p {
+        color: var(--red-color);
+        padding: 4px 8px;
+        border-radius: 5px;
+        border: 1px solid #ffc9c9;
+        font-size: var(--text-xs);
+        background-color: var(--light-red-bg);
+    }
+}
+
+.activity-card__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.activity-card__actions--box {
+    background-color: var(--primary-bg-color);
+}
+
+.activity-box__actions p {
+    text-transform: capitalize;
+}
+
+.activity-box__actions svg {
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+}
+
+.activity-box__actions.task svg {
+    color: var(--primary-color);
+    background-color: var(--light-blue-bg);
+}
+
+.activity-box__actions.expense svg {
+    color: var(--dark-cyan);
+    background-color: var(--light-cyan-bg);
+}
+
+.activity-box__actions.note svg {
+    color: var(--dark-green);
+    background-color: var(--light-green-bg);
+}
+
+
 @media (max-width: 1024px) {
-    .dashboard-container__cards {
+    .dashboard-container__cards,
+    .dashboard-container__activity-cards {
         grid-template-columns: repeat(1, minmax(0, 1fr));
     }
 }

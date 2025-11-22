@@ -56,6 +56,72 @@
             </div>
         </div>
     </div>
+
+    <div class="dashboard-container__activity-cards">
+        <div class="dashboard-container__activity-cards--tasks">
+            <div class="activity-card__heading">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock4-icon lucide-clock-4"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
+                <h4>Recent Tasks</h4>
+            </div>
+            <div class="activity-card__tasks">
+                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-check-big-icon lucide-square-check-big"><path d="M21 10.656V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12.344"/><path d="m9 11 3 3L22 4"/></svg>
+                <p>No tasks yet</p> -->
+                <div class="activity-card__tasks--box">
+                    <div class="activity-box__activity">
+                        <input type="checkbox" id="checkbox" checked />
+                        <label for="checkbox">
+                            <svg viewBox="0 0 24 24" class="checkmark">
+                            <circle cx="12" cy="12" r="11" stroke="#9ca3af" stroke-width="2" fill="white" />
+                            <path d="M6 12l4 4 8-8" stroke="white" stroke-width="2.5" fill="none" />
+                            </svg>
+                        </label>
+                        <div>
+                            <p>Complete project</p>
+                            <span>11/22/2025</span>
+                        </div>
+                    </div>
+                    <div class="activity-box__priority">
+                        <p>high</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dashboard-container__activity-cards--actions">
+            <div class="activity-card__heading">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up-icon lucide-trending-up"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg>
+                <h4>Quick Actions</h4>
+            </div>
+            <div class="activity-card__actions">
+                <div class="activity-card__actions--box">
+                    <div class="activity-box__actions task">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-check-big-icon lucide-square-check-big"><path d="M21 10.656V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12.344"/><path d="m9 11 3 3L22 4"/></svg>
+                        <div>
+                            <p>Create new task</p>
+                            <span>Add a task to your list</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="activity-card__actions--box">
+                    <div class="activity-box__actions expense">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dollar-sign-icon lucide-dollar-sign"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        <div>
+                            <p>Track expense</p>
+                            <span>Record a new expense</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="activity-card__actions--box">
+                    <div class="activity-box__actions note">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-notebook-text-icon lucide-notebook-text"><path d="M2 6h4"/><path d="M2 10h4"/><path d="M2 14h4"/><path d="M2 18h4"/><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M9.5 8h5"/><path d="M9.5 12H16"/><path d="M9.5 16H14"/></svg>
+                        <div>
+                            <p>Write note</p>
+                            <span>Capture your thoughts</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <script src="/scripts/dashboard/dashboard.js"></script>
