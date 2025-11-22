@@ -1,5 +1,5 @@
 #root__aside {
-    width: 16.4rem;
+    width: 16rem;
 }
 
 .sidebar-container {
@@ -83,19 +83,19 @@
     border-radius: 50%;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .sidebar-container__profile--user .user-name {
     color: var(--dark-grey-text-color);
     text-transform: uppercase;
-    font-weight: bold;
     font-size: 0.875rem;
     margin-bottom: 5px;
 }
 
 .sidebar-container__profile--user .user-email {
-    font-size: 0.75rem;
-    color: var(--light-grey-text-color);
+    font-size: var(--text-xs);
+    color: var(--grey-text-color);
 }
 
 .nav-buttons {

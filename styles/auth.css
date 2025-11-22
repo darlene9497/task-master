@@ -125,14 +125,14 @@
 }
 
 .authTitle {
-    font-size: 1.875rem;
+    font-size: var(--text-lg);
     font-weight: bold;
     color: var(--dark-grey-text-color);
 }
 
 .authInfo {
-    color: var(--light-grey-text-color);
-    font-size: 1rem;
+    color: var(--grey-text-color);
+    font-size: var(--text-m);
     font-weight: 400;
 }
 
@@ -182,7 +182,7 @@ input {
     width: 100%;
     padding: 15px 40px;
     font-size: 0.875rem;
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--border-color);
     border-radius: 10px;
 }
 
@@ -200,8 +200,8 @@ input {
 }
 
 .pass-chars {
-    font-size: 0.75rem;
-    color: #6a7282;
+    font-size: var(--text-sm);
+    color: var(--light-grey-text-color);
 }
 
 .auth-container__buttons {
@@ -225,7 +225,7 @@ input {
 }
 
 .auth-container__buttons .help-btn {
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--border-color);
     background-color: transparent;
 }
 
@@ -246,7 +246,7 @@ input {
 }
 
 .auth-container__terms {
-    color: #6a7282;
+    color: var(--light-grey-text-color);
     font-size: 0.8rem;
     margin: 0 0.7rem;
 }
