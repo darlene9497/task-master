@@ -42,6 +42,11 @@ async function loadImports() {
             for (const src of scriptUrls) {
                 await loadScript(src);
             }
+
+            // if this element is in the sidebar init buttons
+            if (element.id === 'root__aside') {
+                initNavButtons();
+            }
             
         } catch (error) {
             console.error(`Error loading ${url}:`, error);
@@ -66,9 +71,51 @@ function loadScript(src) {
     });
 }
 
-// start loading when page is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', loadImports);
-} else {
-    loadImports();
+// function to handle loading a template into the main area
+async function loadMainContent(url) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`Failed to load ${url}`);
+
+        const html = await response.text();
+        const temp = document.createElement('div');
+        temp.innerHTML = html;
+
+        // find script sources
+        const scriptTags = temp.querySelectorAll('script[src]');
+        const scriptUrls = [];
+        scriptTags.forEach(script => {
+            scriptUrls.push(script.getAttribute('src'));
+            script.remove();
+        });
+
+        // replace main content
+        const main = document.getElementById('root__main');
+        main.innerHTML = temp.innerHTML;
+
+        // load scripts
+        for (const src of scriptUrls) {
+            await loadScript(src);
+        }
+
+    } catch (err) {
+        console.error(err);
+    }
 }
+
+function initNavButtons() {
+    const buttons = document.querySelectorAll('.nav-btn[data-target]');
+    buttons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const targetUrl = btn.getAttribute('data-target');
+            loadMainContent(targetUrl);
+        });
+    });
+}
+
+// call initNavButtons after DOM content is ready
+document.addEventListener('DOMContentLoaded', () => {
+    loadImports();  // load sidebar + default main content
+    initNavButtons();  // attach button click handlers
+});
+

@@ -230,7 +230,7 @@ input {
 }
 
 .help-btn img {
-    height: 18px;
+    height: var(--text-mm);
 }
 
 .auth-container__buttons .help-btn:hover {

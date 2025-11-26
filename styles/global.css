@@ -52,12 +52,16 @@ body {
 
 :root {
 	--border-color: #e5e7eb;
-    --primary-color: #0028ff;
-	--primary-bg-color: #f8f9fa;
+    --primary-color: #155dfc;
+	--primary-bg-color: #fbf9fa;
+	--grey-bg-color: #f6f3f4;
 	--dark-grey-text-color: #101828;
 	--grey-text-color: #4a5565;
 	--light-grey-text-color: #6a7282;
+	--light-grey-color: #99a1af;
 	--light-text-color: #1e293b;
+	--light-indigo: #c6d2ff;
+	--semi-light-indigo: #a3b3ff;
 	--red-color: #e7000b;
 	--light-red-bg: #fef2f2;
 	--light-blue-bg: #dbeafe;
@@ -69,6 +73,7 @@ body {
 	--text-xlg: 1.875rem;
 	--text-lg: 1.5rem;
 	--text-m: 1rem;
+	--text-mm: 1.125rem;
 	--text-s: 0.875rem;
 	--text-xs: 0.75rem;
 }

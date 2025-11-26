@@ -1,0 +1,83 @@
+<link rel="stylesheet" href="/styles/dashboard/tasks.css">
+
+<div class="tasks-container">
+    <div class="tasks-container__heading">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10.656V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12.344"/><path d="m9 11 3 3L22 4"/></svg>
+        <div class="tasks-container__heading--title">
+            <h1>Task Management</h1> 
+            <p>Manage and track your tasks</p>
+        </div> 
+    </div>
+
+    <div class="tasks-container__main">
+        <div class="tasks-container__main--top">
+            <button class="container-btn active" data-tab="tasks">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-icon lucide-circle-check"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                <h4>My Tasks</h4>
+            </button>
+            <button class="container-btn" data-tab="summary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chart-column-icon lucide-chart-column"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+                <h4>AI Summary</h4>
+            </button>
+        </div>
+
+        <div class="tasks-container__main--mid">
+            <div class="tasks-container__main--mid-tasks">
+                <div class="activity-tasks">
+                    <p>0</p>
+                    <span>Active tasks</span>
+                </div>
+                <div class="separator"></div>
+                <div class="completed-tasks">
+                    <p>0</p>
+                    <span>Completed</span>
+                </div>
+            </div>
+            <div class="tasks-container__main--mid-btn">
+                <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                    <span>Add Task</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="tasks-container__main--area-tasks">
+            <div class="tab-content" id="tasksTab">
+                <div class="no-tasks">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-icon lucide-circle"><circle cx="12" cy="12" r="10"/></svg>
+                    <p>No tasks yet</p>
+                    <span>Click "Add Task" to create your first task</span> 
+                </div>
+            </div> 
+        </div>
+        <div class="summary-area" id="summaryTab" style="display:none;">
+            <div class="summary-tabs">
+                <button class="container-btn active" data-summarytab="latest">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles-icon lucide-sparkles"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg>
+                    <h4>Latest Summary</h4>
+                </button>
+                <button class="container-btn" data-summarytab="history">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-icon lucide-clock"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
+                    <h4>History (0)</h4>
+                </button>
+            </div>
+            <div class="summary-content latest-summary">
+                <div class="ai-summary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chart-column-icon lucide-chart-column"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+                    <p>No summary generated yet</p>
+                    <span>Click "Generate New" to get AI-powered insights</span>
+                </div>
+            </div>
+
+            <div class="summary-content history-summary" style="display:none;">
+                <div class="histo-summary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-icon lucide-clock"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
+                    <p>No summary history</p>
+                    <span>Generate summaries to build up your history</span>
+                </div>
+            </div>
+        </div> 
+    </div>
+</div>
+
+<script src="/scripts/dashboard/tasks.js"></script>
