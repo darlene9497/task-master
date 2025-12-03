@@ -1,7 +1,7 @@
 document.addEventListener("click", function (e) {
     // stop if no tasks container exists
     if (!document.querySelector(".tasks-container")) return;
-    
+
     // detect top-level tab click (tasks / summary)
     const btn = e.target.closest(".container-btn[data-tab]");
     if (btn) {
@@ -92,5 +92,34 @@ document.addEventListener("click", function (e) {
         // show selected section
         const targetContent = document.querySelector(`#summaryTab .${subTab}-summary`);
         if (targetContent) targetContent.style.display = "block";
+    }
+});
+
+
+
+// add task modal
+const modalOverlay = document.getElementById('taskModal');
+const closeButtons = document.querySelectorAll('.modal-close, .modal-cancel');
+
+// open modal
+document.addEventListener('click', function (e) {
+    const addTaskBtn = e.target.closest('.tasks-container__main--mid-btn button');
+
+    if (addTaskBtn) {
+        modalOverlay.style.display = 'flex';
+    }
+});
+
+// close modal
+closeButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        modalOverlay.style.display = 'none';
+    });
+});
+
+// close modal when clicking outside
+modalOverlay.addEventListener('click', (e) => {
+    if (e.target === modalOverlay) {
+        modalOverlay.style.display = 'none';
     }
 });
