@@ -57,6 +57,9 @@ async function loadImports() {
                     if (typeof setupSidebarToggle === 'function') {
                         setupSidebarToggle();
                     }
+                    if (typeof setupMobileMenu === 'function') {
+                        setupMobileMenu();
+                    }
                 }, 50);
             }
 

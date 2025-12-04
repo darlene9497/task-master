@@ -87,10 +87,87 @@ main {
 	flex: 1;
 	padding: 2.15rem;
 	background-color: var(--primary-bg-color);
+	overflow-y: auto;
+    height: 100vh;
 }
 
-@media (max-width: 768px) {
+/* mobile menu header - hidden on desktop */
+.mobile-menu-header {
+    display: none;
+}
+
+.sidebar-overlay {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
 	:root {
 		font-size: 0.8rem;
 	}
+
+	/* show mobile menu header */
+    .mobile-menu-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.9rem;
+        border-bottom: 1px solid var(--border-color);
+        background-color: white;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .mobile-menu-header__logo {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+    }
+
+    .mobile-menu-header__logo h1 {
+        font-weight: bold;
+        font-size: 1.125rem;
+    }
+
+    .mobile-menu-header__logo svg {
+        color: white;
+        background: linear-gradient(to bottom, #155dfc, #4f39f6);
+        padding: 10px;
+        border-radius: 8px;
+        height: 20px;
+        width: 20px;
+    }
+
+    .mobile-menu-header button {
+        border: none;
+        background-color: transparent;
+        padding: 7px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .mobile-menu-header button svg {
+        height: 1.5rem;
+        width: 1.5rem;
+        color: #364153;
+    }
+
+    .mobile-menu-header button:hover {
+        background-color: #eef2ff;
+    }
+
+    .mobile-menu-header button:hover svg {
+        color: #4f39f6;
+    }
+
+    /* dashboard layout for mobile */
+    .dashboard-layout {
+        display: block;
+        width: 100%;
+    }
+
+    #root__main {
+        width: 100%;
+        padding: 10px 0;
+    }
 }

@@ -1,12 +1,17 @@
 #root__aside {
     width: 16rem;
+    transition: width 0.3s ease;
+    height: 100vh;
+    overflow-y: auto;
+    position: sticky;
 }
 
 .sidebar-container {
-    height: 100%;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
     border-right: 1px solid var(--border-color);
+    background-color: white;
 }
 
 .sidebar-container__header {
@@ -27,35 +32,37 @@
     display: flex;
     align-items: center;
     gap: 0.625rem;
+}
 
-    h1 {
-        font-weight: bold;
-    }
+.sidebar-container__header--icon h1 {
+    font-weight: bold;
+}
 
-    svg {
-        color: white;
-        background: linear-gradient(to bottom, #155dfc, #4f39f6);
-        padding: 10px;
-        border-radius: 8px;
-        height: 20px;
-        width: 20px;
-    }
+.sidebar-container__header--icon svg {
+    color: white;
+    background: linear-gradient(to bottom, #155dfc, #4f39f6);
+    padding: 10px;
+    border-radius: 8px;
+    height: 20px;
+    width: 20px;
 }
 
 .sidebar-container__header--btn {
     display: flex;
     align-items: center;
+}
 
-    button {
-        border: none;
-        background-color: transparent;
-        padding: 7px 4px;
-        border-radius: 5px;
-    }
+.sidebar-container__header--btn button {
+    border: none;
+    background-color: transparent;
+    padding: 7px 4px;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
-    svg {
-        height: 1rem;
-    }
+.sidebar-container__header--btn svg {
+    height: 1rem;
+    transition: rotate 0.3s ease;
 }
 
 .sidebar-container__header--btn button:hover {
@@ -84,6 +91,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 .sidebar-container__profile--user .user-name {
@@ -109,19 +117,23 @@
 .nav-btn { 
     display: flex; 
     align-items: center; 
-    gap: 8px; border: none; 
+    gap: 8px; 
+    border: none; 
     background-color: transparent; 
     color: #364153; 
     padding: 8px 12px; 
-    border-radius: 10px; 
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: left;
+}
 
-    svg { 
-        height: 1rem; 
-    } 
-    
-    span { 
-        font-size: 0.875rem; 
-    } 
+.nav-btn svg { 
+    height: 1rem;
+    flex-shrink: 0;
+}
+
+.nav-btn span { 
+    font-size: 0.875rem; 
 }
 
 .nav-buttons button:focus,
@@ -160,4 +172,118 @@
 
 #root__aside.collapsed .sidebar-container__header--btn svg {
     rotate: 180deg;
+}
+
+/* mobile menu button (hidden by default) */
+.mobile-menu-header {
+    display: none;
+}
+
+/* sidebar overlay for mobile */
+.sidebar-overlay {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .sidebar-container__header--btn {
+        display: none;
+    }
+
+    /* show mobile menu header */
+    .mobile-menu-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.9rem;
+        border-bottom: 1px solid var(--border-color);
+        background-color: white;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .mobile-menu-header__logo {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+    }
+
+    .mobile-menu-header__logo h1 {
+        font-weight: bold;
+    }
+
+    .mobile-menu-header__logo svg {
+        color: white;
+        background: linear-gradient(to bottom, #155dfc, #4f39f6);
+        padding: 10px;
+        border-radius: 8px;
+        height: 20px;
+        width: 20px;
+    }
+
+    .mobile-menu-header button {
+        border: none;
+        background-color: transparent;
+        padding: 7px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .mobile-menu-header button svg {
+        height: 1.5rem;
+        width: 1.5rem;
+    }
+
+    .mobile-menu-header button:hover {
+        background-color: #eef2ff;
+    }
+
+    /* hide sidebar by default on mobile */
+    #root__aside {
+        position: fixed;
+        left: -100%;
+        top: 0;
+        height: 100vh;
+        width: 80%;
+        max-width: 300px;
+        z-index: 1000;
+        transition: left 0.3s ease;
+    }
+
+    /* show sidebar when mobile-open class is added */
+    #root__aside.mobile-open {
+        left: 0;
+    }
+
+    /* overlay for mobile menu */
+    .sidebar-overlay {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+
+    .sidebar-overlay.active {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    /* reset collapsed state on mobile */
+    #root__aside.collapsed {
+        width: 80%;
+        max-width: 300px;
+    }
+
+    #root__aside.collapsed .sidebar-container__header--icon h1,
+    #root__aside.collapsed .sidebar-container__profile--user,
+    #root__aside.collapsed .nav-btn span {
+        display: block;
+    }
 }

@@ -123,3 +123,50 @@ modalOverlay.addEventListener('click', (e) => {
         modalOverlay.style.display = 'none';
     }
 });
+
+
+
+
+// form submission
+const modal = document.getElementById('taskModal');
+const form = document.querySelector('.modal-body__form')
+const submitBtn = document.querySelector('.modal-submit')
+
+submitBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    
+    // get form values
+    const title = form.querySelector('input[type="text"]').value;
+    const description = form.querySelector('textarea').value;
+    const priority = document.getElementById('priority-level').value;
+    const dueDate = document.getElementById('date').value;
+    
+    // validate required fields
+    if (!title || !dueDate) {
+        alert('Please fill in all required fields');
+        return;
+    }
+    
+    // task object
+    const task = {
+        id: Date.now(),
+        title: title,
+        description: description,
+        priority: priority,
+        dueDate: dueDate,
+        status: 'active',
+        createdAt: new Date().toISOString()
+    };
+    
+    // log to the console
+    console.log('---- New task created ----');
+    console.log(task);
+    console.log('--------------------');
+    
+    // close modal and then reset the form
+    modal.style.display = 'none';
+    form.reset();
+    
+    // success message
+    alert('Task created. Check the console for details.');
+});
