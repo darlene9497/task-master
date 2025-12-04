@@ -92,45 +92,88 @@ function formValidation() {
         }
 
         let fullName = "";
+        const isSignup = nameInput !== null;
 
         // name validation only when in signup mode
-        if(nameInput) {
+        if(isSignup) {
             fullName = nameInput.value.trim();
-            const nameRegex = /^[A-Za-z]{3,}$/; // only letters, at least 3 characters
+            const nameRegex = /^[A-Za-z\s]{3,}$/; // letters and spaces, at least 3 characters
 
             if(!nameRegex.test(fullName)) {
                 alert("Your name must have at least 3 letters and no numbers.")
                 return
             }
+
+            // handle signup
+            handleSignup(emailInput.value, passwordInput.value, fullName);
+        } else {
+            // handle login
+            handleLogin(emailInput.value, passwordInput.value);
         }
-
-        const formData = {
-            fullName,
-            email: emailInput.value,
-            password: passwordInput.value
-        }
-
-        fetch("https://jsonplaceholder.typicode.com/users", {
-            method: "POST",
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formData)
-        })
-        .then(res => res.json())
-        .then(data => {
-            alert("Auth successful")
-            console.log(data)
-
-            // set login session
-            sessionStorage.setItem("userLoggedIn", "true");
-            sessionStorage.setItem("userName", fullName || emailInput.value);
-            sessionStorage.setItem("userEmail", emailInput.value);
-
-            // redirect to dashboard
-            window.location.href = "/index.html";
-        })
-        .catch(err => {
-            alert("Auth failed. Try again")
-            console.error(err)
-        });
     })
+}
+
+// handle user signup
+function handleSignup(email, password, fullName) {
+    // check if user already exists
+    const users = JSON.parse(localStorage.getItem("taskmaster_users") || "[]");
+    const existingUser = users.find(u => u.email === email);
+
+    if(existingUser) {
+        alert("An account with this email already exists. Please login instead.");
+        return;
+    }
+
+    // create new user
+    const newUser = {
+        id: Date.now().toString(),
+        email: email,
+        password: password,
+        fullName: fullName,
+        createdAt: new Date().toISOString()
+    };
+
+    users.push(newUser);
+    localStorage.setItem("taskmaster_users", JSON.stringify(users));
+
+    // log the user in
+    loginUser(newUser);
+}
+
+// handle user login
+function handleLogin(email, password) {
+    const users = JSON.parse(localStorage.getItem("taskmaster_users") || "[]");
+    const user = users.find(u => u.email === email && u.password === password);
+
+    if(!user) {
+        alert("Invalid email or password. Please try again.");
+        return;
+    }
+
+    // log the user in
+    loginUser(user);
+}
+
+// log user in and redirect
+function loginUser(user) {
+    // store session info
+    localStorage.setItem("userLoggedIn", "true");
+    localStorage.setItem("currentUserId", user.id);
+    localStorage.setItem("userName", user.fullName);
+    localStorage.setItem("userEmail", user.email);
+
+    alert("Authentication successful! Welcome to TaskMaster.");
+    
+    // redirect to dashboard
+    window.location.href = "/index.html";
+}
+
+// logout function (to be called from sidebar)
+function logoutUser() {
+    localStorage.removeItem("userLoggedIn");
+    localStorage.removeItem("currentUserId");
+    localStorage.removeItem("userName");
+    localStorage.removeItem("userEmail");
+    
+    window.location.href = "/auth.html";
 }

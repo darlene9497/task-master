@@ -1,13 +1,13 @@
 // if user is not logged in, redirect to auth
 function redirectIfNotLoggedIn() {
-    if (sessionStorage.getItem("userLoggedIn") !== "true") {
+    if (localStorage.getItem("userLoggedIn") !== "true") {
         window.location.href = "/auth.html";
     }
 }
 
 // if user is already logged in, redirect to dashboard
 function redirectIfLoggedIn() {
-    if (sessionStorage.getItem("userLoggedIn") === "true") {
+    if (localStorage.getItem("userLoggedIn") === "true") {
         window.location.href = "/index.html";
     }
 }
@@ -43,9 +43,29 @@ async function loadImports() {
                 await loadScript(src);
             }
 
-            // if this element is in the sidebar init buttons
+            // manually trigger initialization after scripts load
             if (element.id === 'root__aside') {
                 initNavButtons();
+                // give it a moment for script to fully execute
+                setTimeout(() => {
+                    if (typeof populateUserProfile === 'function') {
+                        populateUserProfile();
+                    }
+                    if (typeof setupLogout === 'function') {
+                        setupLogout();
+                    }
+                    if (typeof setupSidebarToggle === 'function') {
+                        setupSidebarToggle();
+                    }
+                }, 50);
+            }
+
+            if (element.id === 'root__main') {
+                setTimeout(() => {
+                    if (typeof updateDashboardGreeting === 'function') {
+                        updateDashboardGreeting();
+                    }
+                }, 50);
             }
             
         } catch (error) {
@@ -98,6 +118,13 @@ async function loadMainContent(url) {
             await loadScript(src);
         }
 
+        // trigger initialization for dashboard
+        setTimeout(() => {
+            if (typeof updateDashboardGreeting === 'function') {
+                updateDashboardGreeting();
+            }
+        }, 50);
+
     } catch (err) {
         console.error(err);
     }
@@ -118,4 +145,3 @@ document.addEventListener('DOMContentLoaded', () => {
     loadImports();  // load sidebar + default main content
     initNavButtons();  // attach button click handlers
 });
-
