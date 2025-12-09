@@ -12,72 +12,7 @@ function redirectIfLoggedIn() {
     }
 }
 
-// loads html templates with their linked styles and scripts
-async function loadImports() {
-    const elements = document.querySelectorAll('[data-import]');
-    
-    for (const element of elements) {
-        const url = element.getAttribute('data-import');
-        
-        try {
-            const response = await fetch(url);
-            if (!response.ok) throw new Error(`Failed to load ${url}`);
-            
-            const html = await response.text();
-            const temp = document.createElement('div');
-            temp.innerHTML = html;
-            
-            // find script sources
-            const scriptTags = temp.querySelectorAll('script[src]');
-            const scriptUrls = [];
-            scriptTags.forEach(script => {
-                scriptUrls.push(script.getAttribute('src'));
-                script.remove();
-            });
-            
-            // insert html into page
-            element.innerHTML = temp.innerHTML;
-            
-            // load scripts after html is ready
-            for (const src of scriptUrls) {
-                await loadScript(src);
-            }
-
-            // manually trigger initialization after scripts load
-            if (element.id === 'root__aside') {
-                initNavButtons();
-                // give it a moment for script to fully execute
-                setTimeout(() => {
-                    if (typeof populateUserProfile === 'function') {
-                        populateUserProfile();
-                    }
-                    if (typeof setupLogout === 'function') {
-                        setupLogout();
-                    }
-                    if (typeof setupSidebarToggle === 'function') {
-                        setupSidebarToggle();
-                    }
-                    if (typeof setupMobileMenu === 'function') {
-                        setupMobileMenu();
-                    }
-                }, 50);
-            }
-
-            if (element.id === 'root__main') {
-                setTimeout(() => {
-                    if (typeof updateDashboardGreeting === 'function') {
-                        updateDashboardGreeting();
-                    }
-                }, 50);
-            }
-            
-        } catch (error) {
-            console.error(`Error loading ${url}:`, error);
-        }
-    }
-}
-
-// loads a single script file
+// load a single script
 function loadScript(src) {
     return new Promise((resolve, reject) => {
         // skip if already loaded
@@ -85,8 +20,8 @@ function loadScript(src) {
             resolve();
             return;
         }
-        
-        const script = document.createElement('script');
+
+        const script = document.createElement("script");
         script.src = src;
         script.onload = resolve;
         script.onerror = reject;
@@ -94,38 +29,96 @@ function loadScript(src) {
     });
 }
 
-// function to handle loading a template into the main area
+// load templates with scripts
+async function loadImports() {
+    const elements = document.querySelectorAll('[data-import]');
+
+    for (const element of elements) {
+        const url = element.getAttribute("data-import");
+
+        try {
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`Failed to load ${url}`);
+
+            const html = await response.text();
+            const temp = document.createElement("div");
+            temp.innerHTML = html;
+
+            // extract script sources
+            const scriptTags = temp.querySelectorAll("script[src]");
+            const scriptUrls = [];
+            scriptTags.forEach((script) => {
+                scriptUrls.push(script.getAttribute("src"));
+                script.remove();
+            });
+
+            // insert HTML into element
+            element.innerHTML = temp.innerHTML;
+
+            // load scripts sequentially
+            for (const src of scriptUrls) {
+                await loadScript(src);
+            }
+
+            // initialize element-specific logic
+            if (element.id === "root__aside") {
+                initNavButtons();
+
+                setTimeout(() => {
+                    if (typeof populateUserProfile === "function") populateUserProfile();
+                    if (typeof setupLogout === "function") setupLogout();
+                    if (typeof setupSidebarToggle === "function") setupSidebarToggle();
+                    if (typeof setupMobileMenu === "function") setupMobileMenu();
+                    // reveal sidebar after all scripts initialized
+                    element.style.visibility = "visible";
+                    element.classList.add("show");
+                }, 50);
+            }
+
+            if (element.id === "root__main") {
+                setTimeout(() => {
+                    if (typeof updateDashboardGreeting === "function") updateDashboardGreeting();
+                    // reveal main content
+                    element.style.visibility = "visible";
+                    element.classList.add("show");
+                }, 50);
+            }
+        } catch (error) {
+            console.error(`Error loading ${url}:`, error);
+        }
+    }
+}
+
+// load main content (used for nav buttons)
 async function loadMainContent(url) {
     try {
         const response = await fetch(url);
         if (!response.ok) throw new Error(`Failed to load ${url}`);
 
         const html = await response.text();
-        const temp = document.createElement('div');
+        const temp = document.createElement("div");
         temp.innerHTML = html;
 
-        // find script sources
-        const scriptTags = temp.querySelectorAll('script[src]');
+        // extract scripts
+        const scriptTags = temp.querySelectorAll("script[src]");
         const scriptUrls = [];
-        scriptTags.forEach(script => {
-            scriptUrls.push(script.getAttribute('src'));
+        scriptTags.forEach((script) => {
+            scriptUrls.push(script.getAttribute("src"));
             script.remove();
         });
 
-        // replace main content
-        const main = document.getElementById('root__main');
+        const main = document.getElementById("root__main");
         main.innerHTML = temp.innerHTML;
 
-        // load scripts
         for (const src of scriptUrls) {
             await loadScript(src);
         }
 
-        // trigger initialization for dashboard
+        // trigger dashboard-specific init
         setTimeout(() => {
-            if (typeof updateDashboardGreeting === 'function') {
-                updateDashboardGreeting();
-            }
+            if (typeof updateDashboardGreeting === "function") updateDashboardGreeting();
+            main.style.visibility = "visible";
+            main.classList.add("show");
         }, 50);
 
     } catch (err) {
@@ -133,18 +126,29 @@ async function loadMainContent(url) {
     }
 }
 
+// nav button click handlers
 function initNavButtons() {
-    const buttons = document.querySelectorAll('.nav-btn[data-target]');
-    buttons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const targetUrl = btn.getAttribute('data-target');
+    const buttons = document.querySelectorAll(".nav-btn[data-target]");
+    buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const targetUrl = btn.getAttribute("data-target");
+            // hide main while loading new content
+            const main = document.getElementById("root__main");
+            main.style.visibility = "hidden";
+            main.classList.remove("show");
             loadMainContent(targetUrl);
         });
     });
 }
 
-// call initNavButtons after DOM content is ready
-document.addEventListener('DOMContentLoaded', () => {
-    loadImports();  // load sidebar + default main content
-    initNavButtons();  // attach button click handlers
+// DOM Ready
+document.addEventListener("DOMContentLoaded", () => {
+    // initially hide content to prevent FOUC
+    const aside = document.getElementById("root__aside");
+    const main = document.getElementById("root__main");
+    aside.style.visibility = "hidden";
+    main.style.visibility = "hidden";
+
+    loadImports();
+    initNavButtons();
 });
