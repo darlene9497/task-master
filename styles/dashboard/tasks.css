@@ -1,5 +1,6 @@
 .tasks-container,
-.community-container {
+.community-container,
+.expenses-container {
     border: 2px solid var(--border-color);
     border-radius: 10px;
     display: flex;
@@ -9,7 +10,8 @@
 }
 
 .tasks-container__heading,
-.community-container__heading {
+.community-container__heading,
+.expenses-container__heading {
     display: flex;
     align-items: center;
     gap: 0.625rem;
@@ -38,11 +40,13 @@
     }
 }
 
-.tasks-container__main {
+.tasks-container__main,
+.expenses-container__main {
     padding: 24px;
 }
 
-.tasks-container__main--top {
+.tasks-container__main--top,
+.expenses-container__main--top {
     display: flex;
     background-color: var(--light-grey-text-color);
     margin-bottom: 2rem;
@@ -53,7 +57,8 @@
     border-radius: 5px;
 }
 
-.tasks-container__main--top .container-btn {
+.tasks-container__main--top .container-btn,
+.expenses-container__main--top .container-btn {
     display: flex;
     padding: 6px 12px;
     align-items: center;
@@ -64,7 +69,8 @@
     font-size: var(--text-s);
 }
 
-.tasks-container__main--top .container-btn.active {
+.tasks-container__main--top .container-btn.active,
+.expenses-container__main--top .container-btn.active {
     background-color: white;
 }
 

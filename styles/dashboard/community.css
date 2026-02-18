@@ -165,3 +165,9 @@
 .user-content__area--card {
     flex: 1;
 }
+
+#community-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

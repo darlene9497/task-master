@@ -14,15 +14,16 @@
         <div class="community-container__main--post-content">
             <form>
                 <div class="post-content__avatar">
-                    <span>J</span>
+                    <span id="post-avatar"></span>
                 </div>
                 <div class="post-content__textarea">
                     <textarea
+                    id="post-textarea"
                     placeholder="Share an update, ask for help, or celebrate a win... (Mention @comsq to get AI help)"
                     rows="3"></textarea>
 
                     <div class="post-container__btn">
-                        <button type="submit">
+                        <button type="submit" id="post-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send-icon lucide-send"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg>
                             Post
                         </button>
@@ -31,7 +32,13 @@
             </form> 
         </div>
 
-        <div class="community-container__main--ai-content">
+        <div id="community-feed"></div>
+
+        <!-- <div class="community-container__main--ai-content" id="ai-feed"></div>
+        <div class="community-container__main--user-content" id="user-feed"></div> -->
+
+
+        <!-- <div class="community-container__main--ai-content">
             <div class="ai-content__avatar">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -99,8 +106,8 @@
                     </p>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 
-<script src="/scripts/dashboard/community.js"></script>
+<script src="/scripts/dashboard/community.js" defer></script>
